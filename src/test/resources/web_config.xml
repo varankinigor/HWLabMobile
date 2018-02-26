@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Suite" verbose="1">
+    <test name="Web Tests">
+        <parameter name="propfile" value="src\main\resources\webtests.properties"/>
+        <groups>
+            <run>
+                <include name="web"/>
+                <exclude name="native"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="scenarios.SimpleWebTests"/>
+        </classes>
+    </test>
+</suite>
