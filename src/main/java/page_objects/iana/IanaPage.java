@@ -9,8 +9,6 @@ import org.testng.Assert;
 import setup.Driver;
 
 public class IanaPage {
-    private AppiumDriver driver;
-    private WebDriverWait waiter;
 
     private By headerText = By.cssSelector("#intro p");
 
@@ -23,17 +21,12 @@ public class IanaPage {
     private By homePanelProtocolsHeaderLink = By.cssSelector("#home-panel-protocols h2 a");
     private By homePanelProtocolsText = By.cssSelector("#home-panel-protocols p");
 
-    public IanaPage(AppiumDriver driver, WebDriverWait waiter) {
-        this.driver = driver;
-        this.waiter = waiter;
-    }
-
     /**
      * Custom isDisplayed assert with error message
      * @param element - element to check
      */
-    private void checkIsDisplayed(By element) {
-        Assert.assertTrue(driver.findElement(element).isDisplayed(), element + " is not displayed");
+    private void checkIsDisplayed(By element) throws Exception {
+        Assert.assertTrue(Driver.getDriver().findElement(element).isDisplayed(), element + " is not displayed");
     }
 
     /**
@@ -41,24 +34,24 @@ public class IanaPage {
      * @param element - element to check
      * @param str - expected value of element text
      */
-    private void checkTextCorrect(By element, String str) {
-        if (driver.findElement(element).isDisplayed()) {
-            Assert.assertEquals(driver.findElement(element).getText(), str, element + " is not equals to " + str);
+    private void checkTextCorrect(By element, String str) throws Exception {
+        if (Driver.getDriver().findElement(element).isDisplayed()) {
+            Assert.assertEquals(Driver.getDriver().findElement(element).getText(), str, element + " is not equals to " + str);
         }
     }
 
     /**
      * Navigate to iana.org
      */
-    public void openIanaPage() {
-        driver.get(Driver.getSUT());
-        waiter.until(ExpectedConditions.urlToBe(Driver.getSUT() + "/"));
+    public void openIanaPage() throws Exception {
+        Driver.getDriver().get(Driver.getSUT());
+        Driver.getWaiter().until(ExpectedConditions.urlToBe(Driver.getSUT() + "/"));
     }
 
     /**
      * Checks that all elements on page is displayed
      */
-    public void checkTextsDisplayed() {
+    public void checkTextsDisplayed() throws Exception {
         checkIsDisplayed(headerText);
         checkIsDisplayed(homePanelDomainsHeaderLink);
         checkIsDisplayed(homePanelDomainsText);
@@ -71,7 +64,7 @@ public class IanaPage {
     /**
      * Check that all texts are correct
      */
-    public void checkTextsCorrect() {
+    public void checkTextsCorrect() throws Exception {
         checkTextCorrect(headerText, HOME_PANEL_TEXTS.HEADER_TEXT.getText());
         checkTextCorrect(homePanelDomainsHeaderLink, HOME_PANEL_TEXTS.DOMAINS_HEADER_TEXT.getText());
         checkTextCorrect(homePanelDomainsText, HOME_PANEL_TEXTS.DOMAINS_TEXT.getText());

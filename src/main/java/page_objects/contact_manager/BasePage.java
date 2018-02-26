@@ -3,17 +3,17 @@ package page_objects.contact_manager;
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import setup.Driver;
 
 public abstract class BasePage {
     protected String app_package_name = "com.example.android.contactmanager:id/";
-    protected AppiumDriver driver;
 
     /**
      * Custom isDisplayed assert with error message
       * @param element - element to check
      */
-    protected void checkIsDisplayed(By element) {
-        Assert.assertTrue(driver.findElement(element).isDisplayed(), element + " is not displayed");
+    protected void checkIsDisplayed(By element) throws Exception {
+        Assert.assertTrue(Driver.getDriver().findElement(element).isDisplayed(), element + " is not displayed");
     }
 
     /**
@@ -21,9 +21,9 @@ public abstract class BasePage {
      * @param element - element to check
      * @param str - expected value of element text
      */
-    protected void checkTitleText(By element, String str) {
-        if (driver.findElement(element).isDisplayed()) {
-            Assert.assertEquals(driver.findElement(element).getText(), str, element + " is not equals to " + str);
+    protected void checkTitleText(By element, String str) throws Exception {
+        if (Driver.getDriver().findElement(element).isDisplayed()) {
+            Assert.assertEquals(Driver.getDriver().findElement(element).getText(), str, element + " is not equals to " + str);
         }
     }
 }

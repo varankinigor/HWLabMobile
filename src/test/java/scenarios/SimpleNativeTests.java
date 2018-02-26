@@ -13,13 +13,13 @@ public class SimpleNativeTests extends Hooks {
     private AddContactPage addContactPage;
 
     @BeforeClass
-    public void initPages() throws Exception {
-        contactListPage = new ContactListPage(Driver.getDriver());
-        addContactPage = new AddContactPage(Driver.getDriver());
+    public void initPages() {
+        contactListPage = new ContactListPage();
+        addContactPage = new AddContactPage();
     }
 
     @Test(description = "Check AddContactBtn, click on it, and check AddContactPage elements")
-    public void simplestNativeTest() {
+    public void simplestNativeTest() throws Exception {
         contactListPage.checkAddContactBtnDisplayed();
 
         contactListPage.clickAddContactBtn();

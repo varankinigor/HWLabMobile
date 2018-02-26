@@ -10,12 +10,12 @@ public class SimpleWebTests extends Hooks {
 
     private IanaPage ianaPage;
     @BeforeClass
-    public void initPages() throws Exception {
-        ianaPage = new IanaPage(Driver.getDriver(), Driver.getWaiter());
+    public void initPages() {
+        ianaPage = new IanaPage();
     }
 
     @Test(description = "Open iana.org and checks text on the home page")
-    public void webTest() {
+    public void webTest() throws Exception {
         ianaPage.openIanaPage();
 
         ianaPage.checkTextsDisplayed();

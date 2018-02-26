@@ -5,10 +5,6 @@ import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.By;
 
 public class AddContactPage extends BasePage {
-    public AddContactPage(AppiumDriver driver) {
-        this.driver = driver;
-    }
-
     private By targetAccountTilte = By.xpath("//android.widget.TextView[@content-desc=\"Target Account\"]");
     private By accountSpinner = By.id(app_package_name + "accountSpinner");
 
@@ -28,7 +24,7 @@ public class AddContactPage extends BasePage {
     /**
      *  Checks that all elements on page is displayed
      */
-    public void checkAllElementsDisplayed() {
+    public void checkAllElementsDisplayed() throws Exception {
         checkIsDisplayed(targetAccountTilte);
         checkIsDisplayed(accountSpinner);
         checkIsDisplayed(contactNameTitle);
@@ -45,7 +41,7 @@ public class AddContactPage extends BasePage {
     /**
      * Check that all titles has correct texts
      */
-    public void checkTitles() {
+    public void checkTitles() throws Exception {
         checkTitleText(targetAccountTilte, ADD_CONTACT_TITLES.TARGET_ACCOUNT.getText());
         checkTitleText(contactNameTitle, ADD_CONTACT_TITLES.CONTACT_NAME.getText());
         checkTitleText(contactPhoneTitle, ADD_CONTACT_TITLES.CONTACT_PHONE.getText());
